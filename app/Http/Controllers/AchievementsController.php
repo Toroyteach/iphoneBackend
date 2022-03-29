@@ -11,7 +11,7 @@ class AchievementsController extends Controller
     public function index(User $user)
     {
 
-        $achievementServiceObj = new AchievementService;
+        $achievementServiceObj = new AchievementService($user);
 
         
         return response()->json([
