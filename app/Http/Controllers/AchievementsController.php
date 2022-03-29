@@ -13,13 +13,19 @@ class AchievementsController extends Controller
 
         $achievementServiceObj = new AchievementService($user);
 
+        $unlockedAchievements = $achievementServiceObj->unlockedAchievements();
+        $nextAvailableAchievements = $achievementServiceObj->nextAvailableAchievements();
+        $currentBadge = $achievementServiceObj->currentBadge();
+        $nextBadge = $achievementServiceObj->nextBadge();
+        $remainingToUnlockNextBadge = $achievementServiceObj->remainingAcheivements();
+
         
         return response()->json([
-            'unlocked_achievements' => [],
-            'next_available_achievements' => [],
-            'current_badge' => '',
-            'next_badge' => '',
-            'remaing_to_unlock_next_badge' => 0
+            'unlocked_achievements' => $unlockedAchievements,
+            'next_available_achievements' => $nextAvailableAchievements,
+            'current_badge' => $currentBadge,
+            'next_badge' => $nextBadge,
+            'remaing_to_unlock_next_badge' => $remainingToUnlockNextBadge
         ]);
     }
 }
