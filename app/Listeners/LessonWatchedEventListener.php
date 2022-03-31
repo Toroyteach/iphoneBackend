@@ -7,15 +7,6 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class LessonWatchedEventListener
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
     /**
      * Handle the event.
@@ -25,6 +16,6 @@ class LessonWatchedEventListener
      */
     public function handle($event)
     {
-        //
+        //this here is to get the video watched and add to the user to add count
     }
 }

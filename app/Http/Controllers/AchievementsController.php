@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Service\AchievementService;
+use App\Services\AchievementService;
 
 class AchievementsController extends Controller
 {
