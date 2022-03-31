@@ -4,6 +4,8 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use App\Models\User;
+use App\Models\Lesson;
 
 class LessonWatchedEventListener
 {
@@ -16,6 +18,9 @@ class LessonWatchedEventListener
      */
     public function handle($event)
     {
-        //this here is to get the video watched and add to the user to add count
+        //Mark lesson as watched
+        $lesson = Lesson::find($event->lesson->id);
+        $user = User::find($event->user->id);
+        $user->watched()->attach($lesson, ['watched' => 1 ]);
     }
 }

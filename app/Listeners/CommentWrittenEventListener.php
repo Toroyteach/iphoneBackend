@@ -16,10 +16,9 @@ class CommentWrittenEventListener
      * @param  object  $event
      * @return void
      */
-    public function handle(CommentWritten $event)
+    public function handle($event)
     {
         //get all the listners and comment it with the user model
-        //this to increase the count of listners
-        
+
     }
 }

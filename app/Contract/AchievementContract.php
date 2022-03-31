@@ -37,4 +37,11 @@ interface AchievementContract
      * @return int
      */
     public function  remainingAcheivements(): int;
+    /**
+     * gets achievement from count
+     * @param string $type
+     * @param string $count
+     * @return int
+     */
+    public function  getAchievements(string $type, int $count): string;
 }
