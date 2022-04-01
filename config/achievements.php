@@ -4,6 +4,8 @@ return [
          * Here you can add the dynamic calculation of acheivements
          * 
          * Ensure the corresponding Heading suffix  keys goes together with the key of its array conterpart below to have consistency
+         * 
+         * For example 'First Comment Achievement' corresponds to key 0 in Comments array and soo on
          *
          */
         'CommentsHeading' => [
@@ -43,14 +45,16 @@ return [
          *
          */
         'BadgesHeading' => [
+                'Beginner'=> 0,
                 'Intermediate' => 4,
                 'Advanced' => 8,
                 'Master' => 10,
         ],
         'Badges' => [
-                0 => 4,
-                1 => 8,
-                2 => 10,
+                0 => 0,
+                1 => 4,
+                2 => 8,
+                3 => 10,
         ],
 
 ];

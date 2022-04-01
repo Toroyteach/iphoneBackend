@@ -44,4 +44,11 @@ interface AchievementContract
      * @return int
      */
     public function  getAchievements(string $type, int $count): string;
+        /**
+     * gets achievement title
+     * @param string $type
+     * @param int $count
+     * @return int
+     */
+    public function  getAchievementName(string $type, int $count): string;
 }
