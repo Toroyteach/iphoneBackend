@@ -1,19 +1,17 @@
 <?php
 return [
         /**
-         * The location of the DOMPDF font directory
-         *
-         * The location of the directory where DOMPDF will store fonts and font metrics
-         * Note: This directory must exist and be writable by the webserver process.
-         * *Please note the trailing slash.*
+         * Here you can add the dynamic calculation of acheivements
+         * 
+         * Ensure the corresponding Heading suffix  keys goes together with the key of its array conterpart below to have consistency
          *
          */
         'CommentsHeading' => [
-                'First Comment' => 1,
-                '3th Comment' => 3,
-                '5th Comment' => 5,
-                '10th Comment' => 10,
-                '20th Comment' => 20,
+                'First Comment Achievement' => 1,
+                '3th Comment Achievement' => 3,
+                '5th Comment Achievement' => 5,
+                '10th Comment Achievement' => 10,
+                '20th Comment Achievement' => 20,
         ],
         'Comments' => [
                 0 => 1,
@@ -24,22 +22,14 @@ return [
         ],
 
         /**
-         * The location of the DOMPDF font directory
-         *
-         * The location of the directory where DOMPDF will store fonts and font metrics
-         * Note: This directory must exist and be writable by the webserver process.
-         * *Please note the trailing slash.*
-         *
-         * Notes regarding fonts:
-         * Additional .afm font metrics can be added by executing load_font.php from command line.
          *
          */
         'LessonsHeading' => [
-                'First Lesson' => 1,
-                '5th Lesson' => 5,
-                '10th Lesson' => 10,
-                '25th Lesson' => 25,
-                '50th Lesson' => 50,
+                'First Lesson Achievement' => 1,
+                '5th Lesson Achievement' => 5,
+                '10th Lesson Achievement' => 10,
+                '25th Lesson Achievement' => 25,
+                '50th Lesson Achievement' => 50,
         ],
         'Lessons' => [
                 0 => 1,
@@ -50,14 +40,6 @@ return [
         ],
 
         /**
-         * The location of the DOMPDF font directory
-         *
-         * The location of the directory where DOMPDF will store fonts and font metrics
-         * Note: This directory must exist and be writable by the webserver process.
-         * *Please note the trailing slash.*
-         *
-         * Notes regarding fonts:
-         * Additional .afm font metrics can be added by executing load_font.php from command line.
          *
          */
         'BadgesHeading' => [

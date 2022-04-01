@@ -26,14 +26,22 @@ class AchievementService implements AchievementContract
     */
     public function unlockedAchievements(): array{
         //initialize an dempty array
+        $achievementTemplateLess = $this->achievementTemplate['LessonsHeading'];
+        $achievementTemplateComm = $this->achievementTemplate['CommentsHeading'];
         
         $unlockedAchievement = array();
 
         //get the lessons acheieved from custom method below
-        $unlockedAchievement['Lessons Achievement'] = $this->getAchievements("Lessons", $this->lessonsCount);
-        $unlockedAchievement['Comments Achievement'] = $this->getAchievements("Comments", $this->commentsCount);
+        $unlockedAchievementLesson = $this->getAchievements("Lessons", $this->lessonsCount);
+        $unlockedAchievementComment = $this->getAchievements("Comments", $this->commentsCount);
 
         //return the array created
+        $unlockedLessons = array_search(intval($unlockedAchievementLesson), $achievementTemplateLess, true);
+        $unlockedComments = array_search(intval($unlockedAchievementComment), $achievementTemplateComm, true);
+
+        $unlockedAchievement['Lessons Achievement'] = ($unlockedLessons == false ) ? "No Achievement yet" : $unlockedLessons;
+        $unlockedAchievement['Comments Achievement'] = ($unlockedComments == false ) ? "No Achievement yet" : $unlockedComments;
+
         return $unlockedAchievement;
     }
 
@@ -48,19 +56,37 @@ class AchievementService implements AchievementContract
         $nextLesson = $this->getAchievements("Lessons", $this->lessonsCount);
         $nextComment = $this->getAchievements("Comments", $this->commentsCount);
 
-        //calculate the next available achievement for lesson and comment
-        $achievementTemplate = $this->achievementTemplate['Lessons'];
-        $achKey = array_search(intval( $nextLesson), $achievementTemplate, true);
-        $nextLevelLesson = $achievementTemplate[$achKey + 1];
+        $achievementTemplateLess = $this->achievementTemplate['LessonsHeading'];
+        $achievementTemplateComm = $this->achievementTemplate['CommentsHeading'];
 
-        $achievementTemplate = $this->achievementTemplate['Comments'];
-        $achKey = array_search(intval( $nextComment), $achievementTemplate, true);
-        $nextLevelComments = $achievementTemplate[$achKey + 1];
+        //calculate the next available achievement for lesson and comment
+        $achievementTemplateL = $this->achievementTemplate['Lessons'];
+        $achKeyL = array_search(intval( $nextLesson), $achievementTemplateL, true);
+        $nextLevelLesson = array_search($achKeyL, $achievementTemplateLess, true); //$achievementTemplate[$achKeyL + 1];
+
+        $achievementTemplateC = $this->achievementTemplate['Comments'];
+        $achKeyC = array_search(intval( $nextComment), $achievementTemplateC, true);
+        $nextLevelComments = array_search($achKeyC, $achievementTemplateComm, true); //$achievementTemplate[$achKeyC + 1];
+        //dd($nextComment);
+
 
         $nextAvailableAchievement = array();
 
-        $nextAvailableAchievement['nextAvailableLessonAchievement'] = $nextLevelLesson;
-        $nextAvailableAchievement['nextAvailableCommentAchievement'] = $nextLevelComments;
+        if($nextLesson == "None" || $nextComment <= $achievementTemplateL[0]){
+            $nextAvailableAchievement['nextAvailableLessonAchievement'] =  array_search(1, $achievementTemplateLess, true);
+        } else {
+            $nextAvailableAchievement['nextAvailableLessonAchievement'] =  $nextLevelLesson;
+
+        }
+        
+        if($nextComment == "None" || $nextComment <= $achievementTemplateC[0]) {
+            $nextAvailableAchievement['nextAvailableCommentAchievement'] = array_search(1, $achievementTemplateComm, true);
+        } else {
+            $nextAvailableAchievement['nextAvailableCommentAchievement'] = $nextLevelComments;
+        }
+
+        //dd($nextComment, $nextLevelComments, $achievementTemplateC[0]);
+
 
         //create an array and add both for comment and acheivements
         return $nextAvailableAchievement;
@@ -103,9 +129,19 @@ class AchievementService implements AchievementContract
             }
 
         }
+
+        if($totalAchievements < $achievementTemplate[0]){
+
+            $currentBadge = "No Badge yet";
+
+        } else {
+
+            $achievementTemplateBagde = $this->achievementTemplate['BadgesHeading'];
+            $currentBadge = array_search(intval($level), $achievementTemplateBagde, true);
+        }
         
         //return string with badge name
-        return $level;
+        return $currentBadge;
     }
 
     /**
@@ -118,6 +154,7 @@ class AchievementService implements AchievementContract
 
         //calculate the badge worth and award
         $achievementTemplate = $this->achievementTemplate['Badges'];
+        $achievementTemplateHead = $this->achievementTemplate['BadgesHeading'];
 
         $sizeOfArray = count($achievementTemplate) - 1;
         $highestComment = $achievementTemplate[$sizeOfArray];
@@ -146,8 +183,19 @@ class AchievementService implements AchievementContract
 
         }
 
-        $achKey = array_search($level, $achievementTemplate, true);
-        $nextBadge = $achievementTemplate[$achKey + 1];
+        
+        if($totalAchievements <  $achievementTemplate[0]){
+
+            $nextCount = $achievementTemplate[0];
+            $nextBadge = array_search(intval($nextCount), $achievementTemplateHead, true);
+
+        } else {
+
+            $achKey = array_search($level, $achievementTemplate, true);
+            $nextCount = $achievementTemplate[$achKey + 1];
+            $nextBadge = array_search(intval($nextCount), $achievementTemplateHead, true);
+
+        }
         
         //return string with badge name
         return $nextBadge;
@@ -225,7 +273,7 @@ class AchievementService implements AchievementContract
         for($i = 0; $i <= $sizeOfArray; $i++){
 
             if($count == 0){
-                $level = "Non Achieved";
+                $level = "None";
                 break;
             }
 
