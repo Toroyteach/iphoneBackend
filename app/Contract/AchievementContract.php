@@ -43,7 +43,7 @@ interface AchievementContract
      * @param string $count
      * @return int
      */
-    public function  getAchievements(string $type, int $count): string;
+    public function  getAchievements(string $type, int $level): int;
         /**
      * gets achievement title
      * @param string $type

@@ -9,6 +9,7 @@ return [
          *
          */
         'CommentsHeading' => [
+                'No Achievement' => 0,
                 'First Comment Achievement' => 1,
                 '3th Comment Achievement' => 3,
                 '5th Comment Achievement' => 5,
@@ -16,17 +17,20 @@ return [
                 '20th Comment Achievement' => 20,
         ],
         'Comments' => [
-                0 => 1,
-                1 => 3,
-                2 => 5,
-                3 => 10,
-                4 => 20,
+                0 => 0,
+                1 => 1,
+                2 => 3,
+                3 => 5,
+                4 => 10,
+                5 => 20,
         ],
 
         /**
-         *
+         *****************************************************
+         * lessone heading and lessons count value
          */
         'LessonsHeading' => [
+                'No Achievement' => 0,
                 'First Lesson Achievement' => 1,
                 '5th Lesson Achievement' => 5,
                 '10th Lesson Achievement' => 10,
@@ -34,15 +38,17 @@ return [
                 '50th Lesson Achievement' => 50,
         ],
         'Lessons' => [
-                0 => 1,
-                1 => 5,
-                2 => 10,
-                3 => 25,
-                4 => 50,
+                0 => 0,
+                1 => 1,
+                2 => 5,
+                3 => 10,
+                4 => 25,
+                5 => 50,
         ],
 
         /**
-         *
+         ****************************************************
+         * Comments heading and comments count value
          */
         'BadgesHeading' => [
                 'Beginner'=> 0,

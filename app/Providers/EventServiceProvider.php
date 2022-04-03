@@ -17,10 +17,10 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         CommentWritten::class => [
-            CommentWrittenEventListener::class,
+            CommentWrittenEventListener::class, //this listner is called when the correspendin event is fired
         ],
         LessonWatched::class => [
-            LessonWatchedEventListener::class,
+            LessonWatchedEventListener::class, //this listner is called when the correspendin event is fired
         ],
     ];
 
