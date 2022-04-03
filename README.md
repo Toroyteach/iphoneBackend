@@ -1,4 +1,4 @@
-Here comes a few instructions which could help you whenever you need help haha.
+Here comes a few instructions which could help you whenever you need help.
 
 You can have the Achievements triggers for both the lessons watched and comments written changed dynamically if you would like
 to have lower or higher values to be used to get the result for a user.
